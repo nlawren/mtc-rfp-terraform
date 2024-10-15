@@ -29,5 +29,5 @@ resource "aws_internet_gateway" "mtc_internet_gateway" {
   tags = {
     Name = "mtc_igw"
   }
-  
+
 }
