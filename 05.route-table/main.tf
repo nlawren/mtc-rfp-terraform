@@ -4,7 +4,7 @@ resource "aws_vpc" "mtc_vpc" {
   enable_dns_support   = true
 
   tags = {
-    Name = "dev"
+    Name = "dev.vpc"
   }
 }
 
@@ -19,7 +19,7 @@ resource "aws_subnet" "mtc_public_subnet" {
   availability_zone       = data.aws_availability_zones.available.names[0]
 
   tags = {
-    Name = "dev-public"
+    Name = "dev.public-subnet"
   }
 }
 
@@ -27,7 +27,14 @@ resource "aws_internet_gateway" "mtc_internet_gateway" {
   vpc_id = aws_vpc.mtc_vpc.id
 
   tags = {
-    Name = "mtc_igw"
+    Name = "dev.igw"
   }
+}
 
+resource "aws_route_table" "mtc_public_rt" {
+  vpc_id = aws_vpc.mtc_vpc.id
+
+  tags = {
+    Name = "dev.public-rt"
+  }
 }
